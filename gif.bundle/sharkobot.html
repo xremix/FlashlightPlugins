@@ -16,14 +16,64 @@ body{
 	max-width:100%;
 }
 #url, #url:focus{
-	width:70%;
+	width:90%;
 	border:0px;
+	background: none;
 }
 #reload{
 	position:fixed;
 	top:10px;
 	right:10px;
 }
+
+
+/* Fancy UI */
+
+#description{
+	position: fixed;
+	left:0px;
+	right:0px;
+	top:0px;
+	height:20px;
+	width:100% !important;
+	z-index: 999;
+}
+
+#urlcontainer{
+	position: fixed;
+	bottom:0px;
+	height:20px;
+	width:100%;
+	z-index: 999;
+}
+
+/* Dark Mode */ 
+
+.light-mode #description{
+	background: rgba(255,255,255,0.8);
+}
+.dark-mode #description{
+	background: rgba(0,0,0,0.8);
+}
+
+.light-mode #urlcontainer, .light-mode #url{
+	color:black;
+}
+.dark-mode #url{
+	color:white;
+}
+.dark-mode #urlcontainer, .{
+	background: rgba(0,0,0,0.8);
+}
+
+/* Debug */
+
+#debug, #reload{
+	display:none;
+}
+
+
+/* Spinner - does not work properly in Spotlight */ 
 #reload:hover {
     -webkit-animation-name: spin;
     -webkit-animation-duration: 500ms;
@@ -64,9 +114,6 @@ body{
     }
 }
 
-#debug, #reload,#url{
-	display:none;
-}
 </style>
 <script>
 function sendRequest(url, callback){
@@ -87,8 +134,11 @@ function displayImage(img){
 	document.querySelector("#resultImage").innerHTML = '<img src="'+img.url+'"/>';
 	document.querySelector("#description").innerHTML = img.title;
 	document.querySelector("#url").value = img.url;
-	document.querySelector("#url").focus();
-	document.querySelector("#url").select();
+	//Select URL after 1 second
+	setTimeout(function(){
+		document.querySelector("#url").focus();
+		document.querySelector("#url").select();
+	}, 800);
 }
 
 function getAnchor() {  
@@ -112,7 +162,7 @@ function buildUrl(){
 	<div id="debug"></div>
 	<div id="description"></div>
 	<div id="resultImage"></div>
-	<div><input type="text" id="url"/></div>
+	<div id="urlcontainer"><input type="text" id="url" readonly /></div>
 	<img src="http://fa2png.io/static/images/circle-o-notch_6e6e6e_64.png" id="reload" onclick="location.reload()"/>
 	<script>
 	sendRequest(buildUrl(), function(jsonResponse){
