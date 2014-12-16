@@ -1,0 +1,7 @@
+{
+    "name": "gif",
+    "displayName": "Google Gifs",
+    "categories": ["Media"],
+    "examples": ["giphy grumpy cat"],
+    "description": "Search for GIFs with Giphy"
+}
