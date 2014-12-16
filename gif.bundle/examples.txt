@@ -1,7 +1,4 @@
-gif ~query(cats)
-sharko ~query(cats)
-sharko animate ~query(cats)
-sharko animate me~query(cats)
-sharkobot ~query(cats)
-sharkobot animate ~query(cats)
-sharkobot animate me~query(cats)
+gif ~query(animated gif)
+animate ~query(animated gif)
+animate me ~query(animated gif)
+~query(animated gif) animation

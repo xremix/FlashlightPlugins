@@ -1,7 +1,8 @@
 {
     "name": "gif",
-    "displayName": "Google Gifs",
+    "displayName": "Google gifs",
     "categories": ["Media"],
-    "examples": ["giphy grumpy cat", "sharko animate flashlight"],
-    "description": "Search for GIFs with Giphy"
+    "examples": ["gif grumpy cat", "animate me speed boat", "flashlight animation"],
+    "description": "Search Google for gifs",
+    "description_de": "Durchsucht Google nach gifs"
 }
