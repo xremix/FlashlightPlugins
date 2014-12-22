@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial;
+			line-height: 1.2;
+			text-align: center;
+		}
+		#text{
+			display: inline-block;
+			padding:10px;
+			background-color: #eee;
+		}
+		#inputdate{
+			display: none;
+		}
+	</style>
+	<script>
+		function onload(){
+			function getWorkDays( d0, d1 )
+			{
+			    var ndays =  Math.round((d1.getTime()-d0.getTime())/(24*3600*1000));
+			    var nsaturdays = Math.floor((ndays + d0.getDay()) / 7);
+			    return ndays - 2*nsaturdays + (d0.getDay()==6) - (d1.getDay()==5);
+			}
+			function getDayDifference(d0, d1){
+				var oneDay = 24*60*60*1000;
+				return Math.round(Math.abs((d0.getTime() - d1.getTime())/(oneDay)));
+			}
+
+			function getWeekDifference (d0, d1) {  
+				return parseInt((d1.getTime()-d0.getTime())/(24*3600*1000*7));
+			}  
+			function isWeekend(d1){
+				return d1.getDay() == 0 || d1.getDay() == 7;
+
+			}
+			function getDayFromNumber(day){
+				switch (day) {
+				  case 0:
+				    return 'Sunday';
+				    break;
+				  case 1:
+				    return 'Monday';
+				    break;
+				  case 2:
+				    return 'Tuesday';
+				    break;
+				  case 3:
+				    return 'Wednesday';
+				    break;
+				  case 4:
+				    return 'Thursday';
+				    break;
+				  case 5:
+				    return 'Friday';
+				    break;
+				  case 6:
+				    return 'Saturday';
+				    break;
+				  default:
+				    return 'Sorry this is not a day';
+				}
+
+			}
+
+			function parseDateToString(dateString){
+				var year, month, day;
+				if(dateString.indexOf('.')){
+					var splitValue = dateString.split('.');
+					if(splitValue.length == 3){
+						year = splitValue[2];
+						month = splitValue[1];
+						day = splitValue[0];
+					}
+				} else if(dateString.indexOf('-')){
+					var splitValue = dateString.split('-');
+					if(splitValue.length == 3){
+						year = splitValue[2];
+						month = splitValue[1];
+						day = splitValue[0];
+					}
+				} else if(dateString.indexOf('/')){
+					var splitValue = dateString.split('/');
+					if(splitValue.length == 3){
+						year = splitValue[2];
+						month = splitValue[0];
+						day = splitValue[1];
+					}
+				}
+				return new Date(year, month -1, day);
+			};
+
+			var string = document.querySelector('#inputdate').innerText;
+			nextWeek = parseDateToString(string);
+			document.querySelector('#text').innerHTML = '';
+			document.querySelector('#text').innerHTML += 'End Date ' + nextWeek + '<br/>';
+			document.querySelector('#text').innerHTML += getDayFromNumber(nextWeek.getDay()) + '<br/>';
+			document.querySelector('#text').innerHTML += (isWeekend(nextWeek) ? 'Weekend' : 'Workday') + '<br/>';
+			document.querySelector('#text').innerHTML += 'Workdays ' + getWorkDays(new Date(), nextWeek) + '<br/>';
+			document.querySelector('#text').innerHTML += 'Days ' + getDayDifference(new Date(), nextWeek) + '<br/>';
+			document.querySelector('#text').innerHTML += 'Weeks ' + getWeekDifference(new Date(), nextWeek) + '<br/>';
+		};
+	</script>
+</head>
+<body onload="onload()">
+	<div id="inputdate">28.12.2014</div>
+	<div id="text"></div>
+</body>
+</html>
+
