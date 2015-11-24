@@ -1,0 +1,10 @@
+{
+	"name": "favorites",
+	"displayName": "Favorites",
+	"description": "Open websites just by typing your own specified shortcuts",
+	"examples": ["google"],
+	"categories": ["Utilities"],
+	"openPreferencesOnInstall": true,
+	"creator_name": "Toni Hoffmann (xremix)",
+	"creator_url": "http://xremix.de"
+}
