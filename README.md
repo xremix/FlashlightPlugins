@@ -1,4 +1,4 @@
-#FlashlightPlugins
+# FlashlightPlugins
 ### Plugins for the Spotlight extension Flashlight
 
 
